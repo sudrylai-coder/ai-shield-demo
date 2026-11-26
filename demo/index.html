@@ -106,15 +106,19 @@ function mk(){var box=document.getElementById("scs");SC.forEach(function(sc){
  box.appendChild(b)})}
 mk();
 document.getElementById("seed").onclick=async function(){if(busy)return;busy=true;show("ממלא נתוני דמה…");
- try{for(var i=0;i<SC.length-1;i++){await runOne(SC[i])}
+ try{await doReset();for(var i=0;i<SC.length-1;i++){await runOne(SC[i])}
   await view("admin");show("<b>נטענו נתוני דמה:</b> חסימות, הרשאות והעברה אחת שמחכה לאישור. פתחתי את הדשבורד. בטלפון המנהל יש בקשה לאישור.")}catch(e){show("משהו השתבש. נסו לאפס ולטעון שוב.")}
  busy=false};
 document.getElementById("vdash").onclick=function(){view("admin")};
 document.getElementById("vphone").onclick=async function(){await view("phone");var t=btnByText("לאישורך",Q(".ptabs"));if(t)t.click()};
 document.getElementById("vemp").onclick=function(){view("employee")};
-document.getElementById("reset").onclick=async function(){await ready();fr.contentWindow.confirm=function(){return true};
+async function doReset(){await ready();fr.contentWindow.confirm=function(){return true};
+ await view("phone");var tab=btnByText("לאישורך",Q(".ptabs"));if(tab){tab.click();await sleep(300)}
+ for(var i=0;i<20;i++){var no=Q(".papp button.pno");if(!no)break;no.click();await sleep(250)}
+ var cl=btnByText("נקה הכל");if(cl){cl.click();await sleep(250)}
  var home=btnByText("⌂");if(home){home.click();await sleep(300)}
- var rb=btnByText("אפס הדגמה");if(rb){rb.click();await sleep(400)}show("ההדגמה אופסה.")};
+ var rb=btnByText("אפס הדגמה");if(rb){rb.click();await sleep(400)}}
+document.getElementById("reset").onclick=async function(){if(busy)return;busy=true;await doReset();show("ההדגמה אופסה.");busy=false};
 </script>
 </body>
 </html>
