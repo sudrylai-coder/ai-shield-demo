@@ -441,7 +441,7 @@ function aiErr(e){const c=e&&e.code;if(c==="not_granted")return "לא אושרה
 const sch=(props,req)=>({type:"object",properties:props,required:req||[]});
 const str={type:"string"}, num={type:"number"};
 const TOOLS={
-  transfer_payment:{label:"העברת תשלום לספק",q:"לבקש העברות תשלום לספקים",param:"amount",unit:"₪",money:true,sens:true,roles:["finance"],schema:sch({to:str,amount:num,purpose:str},["to","amount"]),desc:"Transfer a payment (in shekels) to a supplier or vendor. Only finance staff may request it, and it always needs manager approval.",fmt:p=>`העברה של ${fmtN(p.amount)} ₪ ל${p.to||"ספק"}${p.purpose?" · "+p.purpose:""}`},
+  transfer_payment:{label:"העברת תשלום לספק",q:"לבקש העברות תשלום לספקים",param:"amount",unit:"₪",money:true,sens:true,roles:["finance"],schema:sch({to:str,amount:num,purpose:str},["to","amount"]),desc:"Transfer a payment (in shekels) to a supplier or vendor. Only finance staff may request it, and it always needs manager approval.",fmt:p=>(Number.isFinite(p.amount)&&p.amount>0?`העברה של ${fmtN(p.amount)} ₪ ל${p.to||"ספק"}`:`העברת כספים${p.to?" ל"+p.to:""}`)+(p.purpose?" · "+p.purpose:"")},
   ask_ai:{label:"שליחה למודל ה-AI",q:"לשלוח הודעות וקבצים למודל ה-AI",out:true,schema:sch({user:str,text:str,attachment_name:str,attachment_text:str,scan_failed:str},["text"]),desc:"An employee's message (and attached files) to the organization's AI model.",fmt:p=>`${p.text?"״"+String(p.text).slice(0,50)+(String(p.text).length>50?"…":"")+"״":"הודעה"}${p.attachment_name?" + קובץ "+p.attachment_name:""}`},
   book_appointment:{label:"קביעת תור / פגישה",q:"לקבוע תורים ופגישות ללקוחות",schema:sch({date:str,time:str,service:str},["date"]),desc:"Book an appointment, meeting, viewing or table for the customer.",fmt:p=>`תור${p.service?" ל"+p.service:""} ב-${p.date||"?"} ${p.time||""}`},
   cancel_appointment:{label:"ביטול תור",q:"לבטל תורים",schema:sch({date:str,time:str},["date"]),desc:"Cancel an existing appointment.",fmt:p=>`ביטול תור ב-${p.date||"?"} ${p.time||""}`},
@@ -750,11 +750,12 @@ function proxy(c,emp,tool,params){
   // layer: validation
   if(!T||!(T.fixed||emp.rules.some(r=>r.tool===tool))){d={decision:"deny",reason:"פעולה שלא הוגדרה לעובד הזה"};by="אימות";}
   else if(p!==params||JSON.stringify(p).length>(T.out?800000:4000)){d={decision:"deny",reason:"בקשה לא תקינה"};by="אימות";}
-  else if(T.param){const v=p[T.param];if(typeof v!=="number"||!Number.isFinite(v)||v<=0||v>1e6){d={decision:"deny",reason:"סכום לא תקין"};by="אימות";}}
+
   // layer: permissions by role (who is allowed to ask for this at all)
   if(!d&&T.roles&&typeof p.role==="string"&&!T.roles.includes(p.role)){const who=typeof p.user==="string"&&p.user?p.user:emp.name;
     d={decision:"deny",reason:"אינך מורשה "+(VERB[tool]||"לבצע את הפעולה")};by="הרשאות";
     raiseAlert(c,"high",`${who} ניסה ${VERB[tool]||"לבצע פעולה"} בלי הרשאה`,what,"נחסם. רק מחלקת הכספים יכולה לבקש העברות, ותמיד באישור מנהל");}
+  if(!d&&T.param){const v=p[T.param];if(typeof v!=="number"||!Number.isFinite(v)||v<=0||v>1e6){d={decision:"deny",reason:"סכום לא תקין"};by="אימות";}}
   // layer: dangerous commands in any request or action payload (blocked deterministically, even if the AI was "convinced")
   if(!d&&T&&sec(c,"commands").on){const blob=Object.values(p).filter(v=>typeof v==="string").join("\n");const hit=CMD_RE.find(([re])=>re.test(blob));
     if(hit){const who=typeof p.user==="string"&&p.user?p.user:emp.name;d={decision:"deny",reason:"פקודה מסוכנת: "+hit[1]};by="פקודות";
@@ -1530,6 +1531,9 @@ function refreshELog(){
   log.scrollTop=log.scrollHeight;
   const sb=$("#esend"); if(sb)sb.disabled=WS.sending?true:false;
 }
+const MONEY_INTENT=/(?:שלח|תשלח|תעביר|העבר|להעביר|תשלם|לשלם|שלם)\s*(?:לי\s*)?(?:את\s*)?(?:ה)?(?:כסף|כספים|תשלום|העברה|סכום|מקדמה)|העברה\s+בנקאית|העברת\s+(?:כסף|כספים)|(?:תעביר|להעביר|העבר|תשלם|לשלם|שלם)\b[^.\n]*(?:ש"ח|ש״ח|₪|שקל)|(?:לשלם|תשלם)\s+ל(?:ספק|קבלן)/;
+const moneyAmount=(t)=>{const m=String(t).replace(/,/g,"").match(/(\d+(?:\.\d+)?)\s*(?:₪|ש"ח|ש״ח|שח|שקל)|₪\s*(\d+(?:\.\d+)?)/);return m?Number(m[1]||m[2]):null;};
+const moneyPayee=(t)=>((String(t).match(/(?:ל(?:ספק|קבלן)?\s+)([א-ת]+(?:\s+[א-ת]+)?)/)||[])[1]||"").replace(/^(?:ספק|קבלן)\s+/,"").replace(/^את(?:\s.*)?$/,"");
 const EMP_TOOLS=["transfer_payment","send_email","delete_customer_records","export_client_list","share_customer_data"];
 // a blocked / held action becomes a short, fixed card (not the AI's own wording)
 function actionCards(acts){const out=[];
@@ -1562,6 +1566,13 @@ async function sendE(){
       :{title:"ההודעה לא נשלחה ל-Claude",sub:"מידע רגיש לא יוצא מהמשרד",foot:"מחק את הפרטים הרגישים ושלח שוב. "+MGR_HINT};
     c.ws.push(Object.assign({r:"block",lines:card.title==="הגעת לתקציב השיחה"||card.title==="העוזר מושהה כרגע"?[]:lines,at:nowT()},card));WS.sending=false;c.ws=c.ws.slice(-60);save();if(wasEmpty)render();else refreshELog();return;}
   save(); if(wasEmpty)render(); else refreshELog();
+  if(MONEY_INTENT.test(text)){const amt0=moneyAmount(text), to0=moneyPayee(text);
+    if(!TOOLS.transfer_payment.roles.includes(u.role)){
+      const res=proxy(c,emp,"transfer_payment",{to:to0,amount:amt0==null?NaN:amt0,purpose:(text.match(/עבור\s+(.+)$/)||[])[1]||"",user:u.name,role:u.role,tainted:TAINT});
+      c.ws.push(...actionCards([{id:"transfer_payment",res,input:{to:to0,amount:amt0==null?NaN:amt0}}]));
+      c.ws=c.ws.slice(-60);WS.sending=false;save();refreshELog();return;}
+    if(amt0==null&&!sample){c.ws.push({r:"ai",x:"כמה להעביר, ולמי? למשל: תעביר 1,500 ש״ח לספק משה שמואלי עבור מקדמה. כל העברה תעבור לאישור מנהל.",at:nowT()});
+      c.ws=c.ws.slice(-60);WS.sending=false;save();refreshELog();return;}}
   const acts=[]; let reply=""; await aiReady;
   if(sample){
     const doc=okFiles.map(x=>`--- ${x.name} ---\n${x.text.slice(0,6000)}`).join("\n");
@@ -1570,7 +1581,7 @@ async function sendE(){
       execute:(input)=>{const inp=input&&typeof input==="object"?input:{};const res=proxy(c,emp,id,Object.assign({},inp,{user:u.name,role:u.role,tainted:TAINT}));acts.push({id,res,input:inp});return res;}}));
     const prompt=`You are Claude, the AI assistant inside "${ORG_NAME}", an accounting firm. The employee is ${u.name} (a man; address him in masculine Hebrew), ${u.roleHe}.
 You are connected to the firm's systems through tools: transfer_payment (pay a supplier), send_email, delete_customer_records (the firm's database), export_client_list, share_customer_data.
-When he asks for one of these actions, CALL the tool. Do not refuse on your own, do not say you lack access, and do not decide permissions yourself: the firm's security proxy (AI Shield) decides.
+When he asks for one of these actions, CALL the tool (for a payment with no amount or payee, ask him for them first). Do not refuse on your own, do not say you lack access, and do not decide permissions yourself: the firm's security proxy (AI Shield) decides.
 If a tool result is "blocked" or "awaiting_owner_approval", the app shows him a status card itself: reply with at most one short sentence and do not repeat the reason or give advice.
 Otherwise reply in Hebrew, concise and helpful.${hist?"\nEarlier in this chat:\n"+hist:""}${doc?"\nAttached files:\n"+doc:""}
 
@@ -1583,7 +1594,7 @@ ${text||"(ראה קבצים מצורפים)"}`;
     const amt=(text.replace(/,/g,"").match(/(\d+(?:\.\d+)?)\s*(?:₪|ש"ח|ש״ח|שח|שקל)/)||[])[1];
     const payee=((text.match(/(?:ל(?:ספק)?\s+)([א-ת]+(?:\s+[א-ת]+)?)/)||[])[1]||"ספק").replace(/^ספק\s+/,"");
     const call=(id,inp)=>{const res=proxy(c,emp,id,Object.assign(inp,{user:u.name,role:u.role,tainted:TAINT}));acts.push({id,res,input:inp});return res;};
-    if(/תעביר|להעביר|העברה|תשלם|לשלם|תשלום/.test(text)&&amt)call("transfer_payment",{to:payee,amount:Number(amt),purpose:(text.match(/עבור\s+(.+)$/)||[])[1]||""});
+    if((MONEY_INTENT.test(text)||/תעביר|להעביר|העברה|תשלם|לשלם|תשלום/.test(text))&&moneyAmount(text)!=null)call("transfer_payment",{to:moneyPayee(text)||payee,amount:moneyAmount(text),purpose:(text.match(/עבור\s+(.+)$/)||[])[1]||""});
     else if(/מח[וי]?ק/.test(text))call("delete_customer_records",{who:"נתונים מבסיס הנתונים של המשרד"});
     else if(/ייצ(א|וא)|יצוא|רשימת\s+הלקוחות|כל\s+הלקוחות/.test(text))call("export_client_list",{format:"excel"});
     else if(to&&/מייל|אימייל|שלח|תשלח/.test(text)){const res=call("send_email",{to,subject:"הודעה",body:text});if(res.status==="executed")reply=`שלחתי את המייל ל-${to} ✓ (מדומה)`;}
