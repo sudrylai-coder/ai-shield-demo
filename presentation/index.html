@@ -1,0 +1,57 @@
+<!doctype html><html dir="rtl" lang="he"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>AI Shield · הצגה בשלוש דקות</title>
+<style>
+:root{--ink:#0d1b2a;--mut:#56627a;--line:#e3e6ec;--bg:#fafaf8;--acc:#0e6b5c}
+*{box-sizing:border-box}body{margin:0;font-family:Heebo,system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+.w{max-width:760px;margin:0 auto;padding:20px 18px 60px}
+h1{font-size:30px;line-height:1.2;margin:18px 0 8px}h2{font-size:21px;margin:34px 0 10px}
+.lead{color:var(--mut);font-size:17px;margin:0 0 18px}
+.tag{display:inline-block;font-size:13px;font-weight:700;border-radius:20px;padding:2px 12px;background:#fff1cc;color:#7a5a00}
+.btn{display:block;text-align:center;background:var(--ink);color:#fff;font-weight:700;padding:15px;border-radius:10px;text-decoration:none;margin:14px 0}
+.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+ol{padding-inline-start:22px}li{margin:10px 0}
+.say{color:var(--acc);font-weight:600}
+img{max-width:100%;border:1px solid var(--line);border-radius:12px;display:block}
+table{width:100%;border-collapse:collapse;font-size:15px}td,th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}th{color:var(--mut);font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:620px){.two{grid-template-columns:1fr}}
+.g{background:#e6f4ea;border-color:#b7dfc1}.o{background:#fff4e0;border-color:#f1d49b}
+small{color:var(--mut)}
+</style></head><body><div class="w">
+<span class="tag">הדגמה. נתונים ואנשים בדויים</span>
+<h1>AI Shield: AI לא מעביר כסף בלי אישור מנהל</h1>
+<p class="lead">תרחיש אחד, שלוש דקות: משרד רואי חשבון בדוי, העברה של 1,500 ₪ לספק גינון. הבקשה נעצרת, המנהל מאשר, והאירוע נרשם.</p>
+<a class="btn" href="../demo/">פתחו את ההדגמה</a>
+
+<h2>מה אומרים</h2>
+<div class="box"><p>משרדי רואי חשבון מחזיקים מידע פיננסי של לקוחות. כשעוזר AI יכול לא רק לענות אלא גם לבקש פעולה, כמו להעביר כסף, צריך מי שמחליט מה מותר, מה נחסם ומה מחכה לאישור אנושי.</p>
+<p>AI Shield הוא שער הרשאות בין העוזר לבין הפעולה: <b>מותר עובר, אסור נחסם, רגיש מחכה למנהל</b>, והכול נרשם.</p>
+<p><small>הרעיון המקורי של הצוות: שער סוכנים. הדמו כאן מוכיח תרחיש אחד שלו.</small></p></div>
+
+<h2>לחיצות, לפי הסדר</h2>
+<ol>
+<li>פותחים את <b>ההדגמה</b> ולוחצים <b>"אפס הדגמה"</b> (הכפתור האחרון בשורת הכפתורים). מחכים שנייה-שתיים: "ההדגמה אופסה".</li>
+<li>לוחצים על הכרטיס <b>"💸 כספים מבקשים העברה של 1,500 ₪"</b>. אחרי כ-5 שניות מופיע "נרשם וממתין לאישור מנהל".<br><span class="say">אומרים: "הסוכן ביקש להעביר. השער עצר, כי לפי הכלל כל העברה באישור מנהל."</span></li>
+<li>לוחצים <b>"אשר בטלפון המנהל"</b>. אחרי כ-3 שניות: "המנהל אישר. ההעברה בוצעה", עם הערה שההעברה מדומה.<br><span class="say">אומרים: "המנהל אישר. אין כאן חיבור לבנק, ההעברה מדומה."</span></li>
+<li>לוחצים <b>"לדשבורד"</b> וגוללים ל"אירועים בזמן אמת". שלוש שורות, כמו בתמונה למטה.<br><span class="say">אומרים: "בקשה, החזקה, אישור וביצוע, בשלוש שורות שאפשר לקרוא."</span></li>
+<li>אופציונלי, להראות חסימה: "אפס הדגמה", ואז הכרטיס <b>"🛑 עובד שירות מדביק ת״ז של לקוח"</b>. ההודעה נחסמת לפני שהיא יוצאת.</li>
+</ol>
+
+<h2>מה רואים בדשבורד</h2>
+<img src="event-log.png" alt="טבלת אירועים בזמן אמת: שלוש שורות, בקשת העברה, החזקה לאישור, אישור וביצוע" width="740" height="295">
+<div class="box"><table><tr><th>שעה</th><th>מי</th><th>מה</th><th>תוצאה</th><th>למה</th></tr>
+<tr><td>01:24:37</td><td>סוכן ה-AI</td><td>העברה של 1,500 ₪ לגינון ירוק · חשבונית 4412</td><td>עבר</td><td>אושר</td></tr>
+<tr><td>01:24:30</td><td>אבי לוי</td><td>העברה של 1,500 ₪ לגינון ירוק · חשבונית 4412</td><td>לאישור</td><td>כל העברת כספים באישור מנהל</td></tr>
+<tr><td>01:24:30</td><td>אבי לוי</td><td>"תעביר 1,500 ₪ לספק גינון ירוק עבור חשבונית 4412"</td><td>עבר</td><td>שימוש רגיל ב-AI, אחרי בדיקת מידע יוצא</td></tr></table>
+<small>שלוש השורות כפי שנראו בהרצה אמיתית של ההדגמה אחרי איפוס. זה אירוע-לוג בדפדפן של ההדגמה, לא מערכת ביקורת.</small></div>
+
+<h2>מה אמיתי ומה מדומה</h2>
+<div class="two"><div class="box g"><b>רץ בהדגמה (בדפדפן)</b><br>זיהוי ת״ז וכרטיס אשראי בהודעה, הרשאות לפי תפקיד, תהליך אישור מנהל, לוח אירועים.</div>
+<div class="box o"><b>מדומה או לא נבדק</b><br>העברה בנקאית, "טלפון המנהל", המשרד והאנשים. אין חיבור ל-Claude או ל-Slack, הנתונים נשארים בדפדפן. סריקת קבצים וטופס יצירת קשר באתר הראשי לא נבדקו.</div></div>
+<p><small>מה שחסר למוצר אמיתי: שער בצד שרת בין ה-AI למערכות אמיתיות, זיהוי משתמשים אמיתי, אישור ב-Slack או בטלפון, ויומן בצד שרת.</small></p>
+
+<h2>למי זה מיועד: השערה, לא הוכחה</h2>
+<div class="box"><p><span class="tag">יעד להשערה, עדיין לא נבדק מול לקוחות</span></p>
+<p>משרד רואי חשבון קטן בישראל, בלי מפתחים, שבו מנהל המשרד רוצה לדעת מה ה-AI עושה עם מידע של לקוחות. הניסוח של הערך שלנו: לא "אישורים לסוכנים" (כבר יש כלים כאלה למפתחים), אלא שער מוכן, בעברית, עם הרשאות לפי תפקיד, שמנהל לא-טכני יכול להפעיל.</p>
+<p><b>מה עדיין לא יודעים:</b> אם משרדים כאלה משתמשים ב-AI עם מידע לקוחות, מי אצלם מאשר תשלום, ואם מישהו ישלם על זה. אין לנו לקוחות או נתוני ביקוש.</p>
+<p><b>הצעד הבא:</b> לשאול כמה משרדים אמיתיים את שלוש השאלות האלה לפני שבונים עוד.</p></div>
+<p><small>AI Venture Night 2026 · פרויקט הקאתון. <a href="../">לדף הראשי</a></small></p>
+</div></body></html>
