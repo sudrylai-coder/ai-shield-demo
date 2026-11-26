@@ -1,0 +1,62 @@
+<!doctype html><html dir="rtl" lang="he"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI Shield · AI בעסק, בגבולות שאתם קובעים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0d1b2a;--mut:#56627a;--line:#e3e6ec;--bg:#fafaf8;--acc:#0e6b5c;--acc2:#e8f3f0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Heebo,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.w{max-width:1120px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;z-index:5;background:rgba(250,250,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .w{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.2px;color:var(--ink)}.lg{color:var(--acc)}
+.nav{display:flex;align-items:center;gap:28px}.nav a{color:var(--mut);text-decoration:none;font-size:15px;font-weight:500}.nav a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--ink);color:#fff;font-weight:700;font-size:16px;padding:14px 26px;border-radius:10px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,background .15s}.btn:hover{background:#17304b;transform:translateY(-1px)}
+.nav a.btn{color:#fff}.btn.sm{padding:10px 18px;font-size:14px}.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}.btn.ghost:hover{background:var(--ink);color:#fff}
+.hero{padding:84px 0 92px}.hero .g{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center}
+.eye{display:inline-block;color:var(--acc);font-weight:700;font-size:14px;letter-spacing:.3px;margin-bottom:18px}
+h1{font-size:56px;line-height:1.08;margin:0 0 22px;font-weight:800;letter-spacing:-1.4px}h1 span{color:var(--acc)}
+.lead{font-size:20px;color:var(--mut);max-width:560px;margin:0 0 34px;font-weight:400}.cta{display:flex;gap:12px;flex-wrap:wrap}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px -28px rgba(13,27,42,.28);overflow:hidden}
+.card .bar{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line);font-size:13px;color:var(--mut)}.card .bar b{color:var(--ink);font-size:15px}
+.card .bd{padding:6px 20px 18px}.card h4{margin:16px 0 8px;font-size:12px;letter-spacing:.6px;color:var(--mut);font-weight:700}
+.r{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f0f1f4;font-size:15px}.r:last-child{border:0}
+.p{font-size:12px;font-weight:700;border-radius:20px;padding:3px 11px;white-space:nowrap}.hi{background:#fde4e4;color:#a3202c}.md{background:#fff1cc;color:#7a5a00}.ok{background:#dcf3e6;color:#17623a}.ap{background:#fff1cc;color:#7a5a00}.no{background:#fde4e4;color:#a3202c}
+.ex{font-size:12px;color:var(--mut);padding:10px 20px;background:#f6f7f9;border-top:1px solid var(--line)}
+section{padding:92px 0;border-top:1px solid var(--line)}section.alt{background:#fff}
+h2{font-size:40px;line-height:1.15;margin:0 0 14px;font-weight:800;letter-spacing:-.8px}.sub{font-size:18px;color:var(--mut);max-width:640px;margin:0 0 48px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.case{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px}.case .y{font-size:13px;font-weight:700;color:var(--acc);letter-spacing:.4px}.case h3{margin:6px 0 10px;font-size:24px;font-weight:700}.case p{margin:0 0 14px;color:var(--mut);font-size:16px}.case small{color:#7a8499;font-size:13px;display:block}.case a{color:var(--acc);font-weight:500}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.step{padding:34px 30px;border-inline-start:1px solid var(--line)}.step:first-child{border-inline-start:0}.step .n{font-size:14px;font-weight:800;color:var(--acc);margin-bottom:14px}.step h3{margin:0 0 10px;font-size:23px;font-weight:700}.step p{margin:0;color:var(--mut);font-size:16px}
+.get{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}.get div{border-top:2px solid var(--ink);padding-top:18px}.get h3{margin:0 0 8px;font-size:21px;font-weight:700}.get p{margin:0;color:var(--mut);font-size:16px}
+.dark{background:var(--ink);color:#fff;border-top:0}.dark h2{color:#fff}.dark .sub{color:#b9c3d6}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.form{background:#fff;color:var(--ink);border-radius:18px;padding:28px}.form input[type=text],input,textarea{width:100%;margin:6px 0;padding:13px 14px;border-radius:10px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:16px}
+.form input:focus,.form textarea:focus{outline:0;border-color:var(--acc)}.form .btn{width:100%;margin-top:10px;text-align:center}.form label{display:flex;gap:10px;font-size:13px;color:var(--mut);align-items:flex-start;margin-top:8px}.form label input{width:auto;margin-top:4px}
+#fm{margin:12px 0 0;font-size:14px;color:var(--acc);font-weight:500;min-height:20px}
+.honest{font-size:13px;color:#7a8499;max-width:760px}footer{padding:34px 0 46px;color:#7a8499;font-size:13px;border-top:1px solid var(--line)}
+@media(max-width:860px){.hero{padding:44px 0 56px}.hero .g,.cg,.two,.steps,.get{grid-template-columns:1fr}.hero .g{gap:40px}h1{font-size:38px;letter-spacing:-.8px}h2{font-size:30px}.lead{font-size:18px}section{padding:56px 0}.nav a{display:none}.step{border-inline-start:0;border-top:1px solid var(--line)}.step:first-child{border-top:0}.get{gap:28px}.cg{gap:32px}}
+</style></head><body>
+<header><div class="w"><a class="brand" href="#" style="text-decoration:none"><svg class="lg" width="38" height="38" viewBox="0 0 40 40" fill="none" aria-label="לוגו"><path fill="#0e6b5c" fill-rule="evenodd" d="M20 2.5 34.5 7.5V21c0 7.2-5.6 12.6-14.5 16.5C11.1 33.6 5.5 28.2 5.5 21V7.5Z M20 10.5 12.2 29.5h3.9l1.4-3.6h5l1.4 3.6h3.9Z M20 17.3 18.3 22.1h3.4Z"/></svg> AI Shield</a><nav class="nav"><a href="#risk">הסיכון</a><a href="#how">איך זה עובד</a><a href="#get">מה אמיתי</a><a class="btn sm" href="#contact">שיחת היכרות</a></nav></div></header>
+<div class="hero"><div class="w g"><div><span class="eye">סביבת עבודה מוגנת לעובדים שכבר משתמשים ב-AI</span><h1>AI בעסק שלכם.<br><span>בגבולות שאתם קובעים.</span></h1><p class="lead">העובדים ממשיכים לעבוד עם AI דרך AI Shield. לפני השליחה היא בודקת הודעות וקבצים, וחוסמת תעודות זהות וכרטיסי אשראי עם הסבר ברור. כל אירוע נרשם ומוצג בדשבורד.</p><div class="cta"><a class="btn" href="demo/index.html">פתחו את ההדגמה</a><a class="btn ghost" href="#contact">קבעו שיחת היכרות</a></div></div>
+<div class="card"><div class="bar"><b>התראת אבטחה</b><span>דוגמה: משרד רואי חשבון בדוי</span></div><div class="bd"><h4>מה קרה</h4><div class="r"><span>עובד ניסה לשלוח ת״ז של לקוח ל-AI</span><span class="p hi">נחסם</span></div><div class="r"><span>העברת 1,500 ₪ לספק</span><span class="p ap">הדגמה: אישור מנהל</span></div><h4>מה מותר</h4><div class="r"><span>שאלות כלליות ל-AI</span><span class="p ok">מותר</span></div></div><div class="ex">להמחשה בלבד. תרחיש דמו, לא לקוח אמיתי.</div></div></div></div>
+<section id="risk" class="alt"><div class="w"><h2>כשנותנים ל-AI גישה, זה כבר לא רק צ'אט</h2><p class="sub">שני מקרים מהשנה האחרונה. הם מראים את הסיכון, לא מה אנחנו מונעים.</p><div class="two">
+<div class="case"><div class="y">יולי 2025</div><h3>Replit</h3><p>דווח שסוכן AI מחק מסד נתונים חי למרות הוראה להקפיא שינויים. הנתונים שוחזרו.</p><small>מקור: <a href="https://www.fastcompany.com/91372483/replit-ceo-what-really-happened-when-ai-agent-wiped-jason-lemkins-database-exclusive">Fast Company</a>. חלק מהפרטים מדברי הלקוח שנפגע.</small></div>
+<div class="case"><div class="y">יוני 2025</div><h3>EchoLeak</h3><p>חוקרים הראו שמייל זדוני יכול לגרום ל-Copilot של מיקרוסופט להדליף מידע פנימי בלי קליק. מיקרוסופט תיקנה; לא דווח על ניצול בפועל.</p><small>מקור: <a href="https://www.bleepingcomputer.com/news/security/zero-click-ai-data-leak-flaw-uncovered-in-microsoft-365-copilot/">BleepingComputer</a>, <a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-32711">MSRC</a></small></div></div></div></section>
+<section id="how"><div class="w"><h2>שלושה שלבים</h2><p class="sub">כך נראית ההדגמה של AI Shield. ההדגמה רצה בדפדפן, על הודעות וקבצים שאתם מזינים, ולא מחוברת לתעבורה אמיתית של עסק.</p><div class="steps">
+<div class="step"><div class="n">01</div><h3>בדיקה</h3><p>העובד כותב, מדביק או מצרף קובץ דרך AI Shield. נבדקים תעודות זהות וכרטיסי אשראי לפני שה-AI מקבל אותם.</p></div>
+<div class="step"><div class="n">02</div><h3>חסימה עם הסבר</h3><p>מידע רגיש לא נשלח, והעובד מקבל הסבר ופנייה למנהל. אישור מנהל לפעולות רגישות מוצג בהדגמה, ועדיין לא מחובר לבנק או למערכות אמיתיות.</p></div>
+<div class="step"><div class="n">03</div><h3>שקיפות</h3><p>דשבורד מציג מה נבדק, מה נחסם ומה אושר. השימוש ב-AI מחוץ לAI Shield אינו נראה לה.</p></div></div></div></section>
+<section id="get" class="alt"><div class="w"><h2>מה אמיתי ומה מדומה</h2><p class="sub">מצב הדמו של AI Shield, בלי להגזים.</p><div class="get"><div><h3>רץ בדמו</h3><p>זיהוי ת״ז וכרטיס אשראי בהודעות, וחסימה עם הסבר. הנתונים לא נשמרים, רק 4 ספרות אחרונות מופיעות בהתראה.</p></div><div><h3>מדומה</h3><p>וואטסאפ, יומן וקופה בדמו הם מדומים. אין עדיין חיבור לתעבורה אמיתית של עסק.</p></div><div><h3>עדיין לא נבדק</h3><p>ביקוש, תמחור ותוצאות בשטח. אלו השערות שנבדוק עם עסקים.</p></div></div></div></section>
+<section id="contact" class="dark"><div class="w cg"><div><h2>בואו נדבר</h2><p class="sub" style="margin-bottom:24px">שיחה קצרה, בלי התחייבות. נחזור אליכם ונבין איפה ה-AI כבר עובד אצלכם.</p><p class="honest" style="color:#9fb0c8">שקיפות: זה שירות בהקמה. אין הגנה מוחלטת מפני כל תקרית, וההדגמות באתר הן להמחשה. פניות מהטופס נשמרות במערכת הצוות ונגישות לצוות מורשה בלבד. אין לקוחות, תוצאות או צוות שמוצגים כאן שלא קיימים.</p></div>
+<div class="form"><input id="fb" maxlength="80" placeholder="שם העסק"><input id="fc" maxlength="120" placeholder="איך חוזרים אליכם (טלפון או מייל)"><textarea id="fp" maxlength="600" rows="3" placeholder="מה הכי מדאיג אתכם?"></textarea><input id="fh" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;opacity:0;width:0;height:0;padding:0;border:0;margin:0;pointer-events:none"><label><input id="fk" type="checkbox"><span>אני מסכים/ה שהפרטים שמסרתי (שם עסק, טלפון או מייל, ותיאור הפנייה) יישמרו בשרת בסינגפור ויהיו נגישים לצוות מורשה בלבד, כדי שיחזרו אליי. אפשר לבקש הסרה בכל עת.</span></label><a class="btn" href="#contact" id="fs">שלחו פנייה</a><div id="fm"></div></div></div></section>
+<footer><div class="w">© AI Shield · פרויקט הקאתון, AI Venture Night 2026</div></footer>
+<script>var SBU="https://zavxnzrxabhjjjwkpdke.supabase.co",SBK="sb_publishable_SGfn6UxMGxKG9s83uvR3Cw_QIBYvIvN";
+document.getElementById("fs").onclick=async function(e){e.preventDefault();var m=document.getElementById("fm"),btn=this;
+if(btn.dataset.busy)return;
+if(!fk.checked){m.textContent="כדי לשלוח צריך לסמן הסכמה.";return}
+if(!fb.value.trim()||!fc.value.trim()||!fp.value.trim()){m.textContent="נא למלא שם עסק, דרך חזרה ותיאור קצר.";return}
+btn.dataset.busy=1;m.textContent="שולח...";
+try{var r=await fetch(SBU+"/rest/v1/rpc/public_lead",{method:"POST",headers:{"Content-Type":"application/json",apikey:SBK,Authorization:"Bearer "+SBK},body:JSON.stringify({p_name:fb.value,p_contact:fc.value,p_problem:fp.value,p_consent:true,p_hp:fh.value})});
+if(r.ok){m.textContent="הפנייה התקבלה. נחזור אליכם.";fb.value=fc.value=fp.value="";fk.checked=false}
+else{var t=await r.text();m.textContent=/invalid contact/.test(t)?"נא להזין טלפון או מייל תקינים.":/invalid input/.test(t)?"אחד השדות קצר או ארוך מדי.":/busy/.test(t)?"יש עומס כרגע, נסו שוב מאוחר יותר.":"השליחה נכשלה. נסו שוב."}}
+catch(x){m.textContent="השליחה נכשלה. בדקו חיבור ונסו שוב."}
+delete btn.dataset.busy}</script></body></html>
