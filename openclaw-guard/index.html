@@ -82,4 +82,10 @@ bash install.sh
 <tr class="rm"><td>מתאמים לאפליקציות AI נוספות, כל אחת לפי נקודות ההרחבה שלה.</td></tr>
 </table>
 <p style="font-size:.85rem;color:#555">אין כאן אימות שוק, לקוחות או ערובה אבטחתית. הליבה (policy-core.js) כתובה בלי תלות ב-OpenClaw כדי לאפשר מתאמים נוספים.</p>
+<h2 id="browser">Browser prototype: duck.ai only (0.1.0, unpacked)</h2>
+<p><b>Narrow claim:</b> a Chrome extension that, on https://duck.ai/* only, stops Enter, Send-click and form submit when the text has a card number, Israeli ID, secret, classification label, long base64/hex or an injection phrase. Page-level guard only. Not a model or network protection, not one-click, not signed, not in the Chrome Web Store. No text is logged or sent anywhere.</p>
+<p>Download: <a href="download/ai-shield-browser-duck-0.1.0.zip">ai-shield-browser-duck-0.1.0.zip</a> (sha256 d46d72d46cc174b5a8e64d76c25f770167025964debd2c9a11d4bf05cf639a1b). Install: unzip, chrome://extensions, Developer mode, Load unpacked.</p>
+<p><b>Tested</b> in real Chrome 157, synthetic text, terms never accepted, no real prompt sent: card + Enter blocked; card + Send button blocked; clean text passes; same after New chat. Control without the extension: the page accepts the card text. If the check code throws, sending is blocked and a red badge shows (tested with deliberately broken code). A green badge "AI Shield: ON (duck.ai)" shows when active; no badge means off. Evidence is DOM-level only: duck.ai shows a first-use terms card, so a network attempt could not be shown.</p>
+<p><b>Not tested / not supported:</b> every other site, uninstall mid-session. Bypass: page scripts, files, other browsers, direct network, disabling the extension.</p>
+<p><img src="browser-evidence/duck-on-blocked.png" width="480" alt="extension on, card blocked"> <img src="browser-evidence/duck-guard-error.png" width="480" alt="guard error, send blocked"> <img src="browser-evidence/duck-extension-off.png" width="480" alt="extension off control"></p>
 </body></html>
