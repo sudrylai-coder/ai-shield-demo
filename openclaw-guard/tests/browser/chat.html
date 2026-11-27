@@ -1,0 +1,7 @@
+<!doctype html><meta charset="utf-8"><title>mock chat</title>
+<form id="f"><textarea id="t"></textarea><button type="submit" id="send" aria-label="Send">Send</button></form>
+<script>
+window.__sent = [];
+document.getElementById("t").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); window.__sent.push(document.getElementById("t").value); document.getElementById("t").value=""; } });
+document.getElementById("f").addEventListener("submit", (e) => { e.preventDefault(); window.__sent.push(document.getElementById("t").value); document.getElementById("t").value=""; });
+</script>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Shield: מסלול הצגה ומסירה</title>
+<style>
+body{font-family:system-ui,Arial,sans-serif;max-width:820px;margin:2rem auto;padding:0 1rem;line-height:1.6;color:#111}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:.4rem .6rem;text-align:right;vertical-align:top}
+.real{background:#e6f6e6}.sim{background:#fff3cd}.no{background:#fbe9e9}
+code{background:#f4f4f4;border-radius:4px;direction:ltr;unicode-bidi:embed;padding:0 .2rem}
+.btn{display:inline-block;background:#0e6b5c;color:#fff;padding:.5rem 1rem;border-radius:8px;text-decoration:none;margin:.2rem}
+</style></head><body>
+<h1>AI Shield: מסלול הצגה ומסירה</h1>
+<p><b>זה אב-טיפוס עובד, לא מוצר גמור.</b> כל שורה כאן אומרת מה באמת הורץ. אין כאן "מוגן בהורדה", הגנה מכל סיכון, מתקין מקורי חתום, או תמיכה ב-Windows/macOS.</p>
+
+<h2>מסלול הצגה (לפי הסדר)</h2>
+<table>
+<tr><th>#</th><th>מה מראים</th><th>סטטוס</th><th>איפה</th></tr>
+<tr class="sim"><td>1</td><td>הרעיון והבעיה</td><td>מצגת</td><td><a href="../presentation/">../presentation/</a></td></tr>
+<tr class="sim"><td>2</td><td>דמו שער ההרשאות</td><td><b>מדומה</b>. אין סוכן או מודל אמיתי מאחוריו. היומן הוא שרשרת גיבוב מקומית בדפדפן, לא חתום ולא חסין לשינוי</td><td><a href="../demo/">../demo/</a></td></tr>
+<tr class="real"><td>3</td><td>גבול הרשאות אמיתי ב-GitHub</td><td><b>אמיתי</b>, על מאגר בדיקה נפרד</td><td><a href="https://github.com/sudrylai-coder/ai-shield-gate-proof">ai-shield-gate-proof</a></td></tr>
+<tr class="real"><td>4</td><td>מתאם OpenClaw: חסימת קלט ופעולות מסוכנות</td><td><b>אמיתי</b> על OpenClaw 2026.11.10, Linux, עם מודל סינתטי מתוסרט. ברירת מחדל: כללים בלבד</td><td><a href="./">openclaw-guard</a></td></tr>
+<tr class="real"><td>5</td><td>אב-טיפוס דפדפן</td><td><b>אמיתי</b> ב-Chrome 157 ללא ממשק, טקסט סינתטי, <b>duck.ai בלבד</b>, בדיקת DOM בלבד, התקנה ידנית (Load unpacked)</td><td><a href="./#browser2">#browser2</a></td></tr>
+<tr class="no"><td>6</td><td>סגירה כנה: פערים ותוכנית Windows</td><td>לא נבנה</td><td>למטה ו-<a href="HANDOFF.md">HANDOFF.md</a></td></tr>
+</table>
+
+<h2>התקנה קצרה שנבדקה</h2>
+<p><b>OpenClaw (Linux):</b> יש OpenClaw 2026.11.x. מחלצים את <code>ai-shield-guard-0.2.0.zip</code> לתיקייה ריקה, מריצים <code>bash install.sh</code>, ומפעילים מחדש את ה-gateway. הסרה: <code>bash uninstall.sh</code>. נבדק: התקנה נקייה מה-ZIP החי. מודל מקומי הוא שלב נפרד וידני (כ-1.5GB), כבוי כברירת מחדל.</p>
+<p><b>דפדפן (duck.ai בלבד):</b> מחלצים את <code>ai-shield-browser-duck-0.2.0.zip</code>, ב-<code>chrome://extensions</code> מפעילים Developer mode ובוחרים Load unpacked. עובד מיד במצב כללים בלבד. מצב מודל דורש להפעיל את <code>helper/shield-helper.py</code>, להעתיק את הטוקן ל-<code>config.js</code> ולטעון מחדש; אם ה-helper לא זמין, השליחה נחסמת.</p>
+<p>זו לא התקנה בלחיצה אחת.</p>
+<p><a class="btn" href="download/ai-shield-guard-0.2.0.zip">OpenClaw guard 0.2.0</a> <a class="btn" href="download/ai-shield-browser-duck-0.2.0.zip">Browser prototype 0.2.0</a> <a class="btn" href="download/SHA256SUMS">SHA256SUMS</a> <a class="btn" href="HANDOFF.md">דו"ח בדיקות, מלאי ופערים (HANDOFF.md)</a></p>
+
+<h2>פערים ידועים (בקצרה)</h2>
+<ul>
+<li>דפדפן: חסימה ברמת ה-DOM בלבד. סקריפטים של הדף, קבצים, דפדפנים אחרים, רשת ישירה וכיבוי התוסף עוקפים. נבדק רק duck.ai. לא נבדק: אתרים אחרים, Windows/macOS.</li>
+<li>ה-helper: כותרת Origin נקבעת על ידי הקורא ולא מאמתת דבר. קובץ הטוקן קריא לכל תהליך של אותו משתמש, לכן תוכנה זדונית באותו חשבון לא נעצרת.</li>
+<li>OpenClaw: ה-hooks אינם sandbox. כתיבה, עריכה והרצה חסומות לגמרי. זרימת אישור אנושי לא נבדקה. Linux בלבד.</li>
+<li>מודל מקומי אחד, מדגם קטן (1 מתוך 12 הודעות תקינות נחסמה בטעות), אין מבחן עברית רשמי. אין מודל חיצוני מחובר ושום טקסט לא נשלח לספק.</li>
+</ul>
+
+<h2>Windows: המלצה (לא הושג)</h2>
+<p>מתועד: OpenClaw מציע אפליקציית Windows Hub מקורית (<a href="https://docs.openclaw.ai/platforms/windows/">docs.openclaw.ai</a>). תוספי Chrome אפשר לפרוס בארגון עם מדיניות ExtensionInstallForcelist (<a href="https://support.google.com/chrome/a/answer/7532015?hl=en">Google</a>). פרסום ב-Chrome Web Store דורש אגרת הרשמה חד-פעמית, מופיעה כ-$5 (<a href="https://developer.chrome.com/docs/webstore/register">Chrome</a>). מתקין מחוץ ל-Microsoft Store כפוף ל-SmartScreen וחתימת קוד (<a href="https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation">Microsoft</a>).</p>
+<p>הצעה (הערכה שלי, לא נבדקה על Windows): קודם סקריפט PowerShell למתאם OpenClaw ובדיקת התוסף במצב כללים על מחשב Windows אמיתי, שאין לנו. ה-helper עם המודל הוא החלק הכבד ונשאר אופציונלי. התקנה בלחיצה לתוסף דורשת Web Store ($5, באישורך) או מדיניות ארגונית. מתקין חתום מקורי רק אחרי שהשלבים הקודמים אומתו. "מלווה שפועל בכל אפליקציה" הוא בנייה גדולה אחרת ולא התחילה.</p>
+</body></html>
