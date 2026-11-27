@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Shield: התחלה</title>
+<style>
+body{font-family:system-ui,Arial,sans-serif;max-width:760px;margin:2rem auto;padding:0 1rem;line-height:1.6;color:#111}
+h1{margin-bottom:.2rem}.sub{color:#444;margin-top:0}
+.btn{display:inline-block;background:#0e6b5c;color:#fff;padding:.7rem 1.2rem;border-radius:10px;text-decoration:none;font-weight:600;font-size:1.1rem}
+.card{border:1px solid #ccc;border-radius:10px;padding:1rem;margin:1rem 0}
+.real{background:#e6f6e6}.sim{background:#fff3cd}.no{background:#fbe9e9}
+code{background:#f4f4f4;border-radius:4px;direction:ltr;unicode-bidi:embed;padding:0 .2rem}
+</style></head><body>
+<h1>AI Shield</h1>
+<p class="sub">חומת הגנה לסוכני AI: חוסמת מידע רגיש לפני שליחה. אב-טיפוס עובד, לא מוצר גמור.</p>
+
+<div class="card real">
+<h2>התוכנה: תוסף Chrome (0.2.0)</h2>
+<p><a class="btn" href="../openclaw-guard/download/ai-shield-browser-duck-0.2.0.zip">הורדת ZIP (16 KB)</a></p>
+<ol>
+<li>פותחים את ה-ZIP וחולצים (קליק ימני, Extract All). נוצרת תיקייה <code>ai-shield-browser-duck</code>. <b>זו התיקייה שמכילה את manifest.json</b>.</li>
+<li>ב-Chrome נכנסים ל-<code>chrome://extensions</code> ומפעילים Developer mode.</li>
+<li>לוחצים Load unpacked ובוחרים את התיקייה <code>ai-shield-browser-duck</code> (לא את ה-ZIP ולא תיקייה מעליה).</li>
+<li>פותחים <code>duck.ai</code>, כותבים מספר כרטיס לדוגמה <code>4111 1111 1111 1111</code> ולוחצים Enter. צפוי: הודעת חסימה. לא ללחוץ על כפתור "Ask" או אישור תנאים של האתר.</li>
+</ol>
+<p>ברירת מחדל: חוקים בלבד. בלי מודל, בלי שרת עזר, בלי חשבון, בלי עלות.</p>
+</div>
+
+<div class="card sim">
+<h2>מה נבדק ומה לא</h2>
+<ul>
+<li><b>נבדק:</b> Chrome 157 על Linux (headless), טקסט סינתטי, duck.ai בלבד. הוכחה ברמת ה-DOM. כרטיס אשראי, ת"ז ישראלית, מפתחות וביטויי הזרקה (עברית ואנגלית) נחסמים לפני שליחה.</li>
+<li><b>לא נבדק:</b> Windows ו-macOS (אין סיבה ידועה שלא יעבוד, אבל לא הורץ), אתרים אחרים, Cursor ואפליקציות אחרות.</li>
+<li><b>מגבלות:</b> שכבת ממשק בלבד. אפשר לעקוף בהדבקת קבצים, בדפדפן אחר או בכיבוי התוסף. לא חתום, לא בחנות Chrome, התקנה ידנית. אין הגנה "מכל סיכון".</li>
+<li>מצב אופציונלי עם מודל מקומי (rules+model) דורש הכנה ידנית והורדה של כ-1.5 GB. נבדק על Linux בלבד.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>הוכחות והדגמות</h2>
+<ul>
+<li class="real"><a href="../openclaw-guard/#browser2">צילומי מסך אמיתיים מ-Chrome: חסימה, שגיאת שער, בקרה בלי תוסף</a></li>
+<li class="real"><a href="https://github.com/sudrylai-coder/ai-shield-gate-proof">הוכחת שער אמיתית ב-GitHub (ריפו נפרד)</a></li>
+<li class="real"><a href="../openclaw-guard/">תוסף OpenClaw 0.2.0 (נבדק על Linux עם מודל מדומה)</a></li>
+<li class="sim"><a href="../demo/">דמו אינטראקטיבי: <b>הדמיה</b>, לא מערכת חיה</a></li>
+<li><a href="../openclaw-guard/HANDOFF.md">דוח מלא, סכומי בדיקה ופערים</a></li>
+</ul>
+</div>
+
+<div class="card">
+<h2>חומרי הצגה</h2>
+<ul>
+<li><a href="../presentation/">מצגת קיימת</a></li>
+<li>מודעה שיווקית: יתווסף בקרוב</li>
+<li>מצגת סופית: תתווסף בקרוב</li>
+</ul>
+</div>
+</body></html>
