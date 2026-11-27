@@ -19,3 +19,8 @@ NOT verified: approve-then-run with a real human approver; Windows/macOS; real m
 
 Hook crash test (plugin copy that throws): before_agent_run throws -> message blocked, 0 model requests (fail closed). before_tool_call throws -> "Tool call blocked because before_tool_call hook failed", write and exec did not run, canary intact (fail closed).
 Update 02:12: symlink/ancestor checks and approval-off defaults are in the published build (sha256 5dacf427...1d32 tar.gz).
+
+## v0.2.0 (02:30)
+Fresh install from zip (empty state): classification label blocked (0 model requests), .env read denied, clean message passes. Optional semantic scripts run from the same zip: setup-semantic.sh --yes (checksum OK), qwen-server.py, enable-semantic.sh: benign Hebrew passed, Hebrew salary-to-private-gmail request blocked by the model with no rule hit; classifier down + required -> blocked "could not inspect".
+Model: Qwen/Qwen3Guard-Gen-0.6B (Apache-2.0), model.safetensors sha256 4f3ce47e...5c0f. Latency in 1-CPU lab: ~2 s model alone, ~30 s end to end with OpenClaw. Sample: 8 attack-style, 12 benign, 1/12 benign false positive. No Hebrew benchmark verified.
+zip 0.2.0 sha256 dd3c5cc1...5595, tar.gz 0.2.0 8b5a9d1d...cbad.
